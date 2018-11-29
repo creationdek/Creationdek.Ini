@@ -1038,6 +1038,36 @@ namespace Creationdek.IniConfig.Net.Tests.Unit
         }
 
         [Fact]
+        public async Task WriteAsync_ShouldWriteFileToNonExistingFolder()
+        {
+            var file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "test", "tmp.unit-test-file_0.ini");
+
+            var doc = GenerateIniObject(GenerateIniDocument(1));
+            await doc.WriteAsync(file);
+
+            await IniDocument.WriteAsync(file, "Alien", "kind", "log jaw");
+
+            var sec = await IniDocument.ReadSectionAsync(file, "Person");
+
+            Assert.Collection(sec.Properties(),
+                s => Assert.Equal("FirstName", s.Key),
+                s => Assert.Equal("LastName", s.Key),
+                s => Assert.Equal("Age", s.Key));
+
+            sec = await IniDocument.ReadSectionAsync(file, "Alien");
+
+            Assert.Collection(sec.Properties(),
+                s => Assert.Equal("kind", s.Key));
+            Assert.Collection(sec.Properties(),
+                s => Assert.Equal("log jaw", s.Value));
+
+            File.Delete(file);
+            Assert.False(File.Exists(file));
+            Directory.Delete(Path.GetDirectoryName(file));
+            Assert.False(Directory.Exists(Path.GetDirectoryName(file)));
+        }
+
+        [Fact]
         public async Task ReadSection_ShouldReadSectionIfItExistsAsync()
         {
             var createFile = await CreateIniFileAsync();

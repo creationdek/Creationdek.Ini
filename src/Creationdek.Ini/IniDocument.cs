@@ -178,7 +178,11 @@ namespace Creationdek.Ini
 
             if (path == "")
                 throw new FileNotFoundException(InvalidFilePathMessage);
-
+            var dir = Path.GetDirectoryName(path);
+            if (dir != null && !Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
             using (var writer = File.CreateText(path))
                 await writer.WriteAsync(ToString(filters));
         }
@@ -196,6 +200,12 @@ namespace Creationdek.Ini
             if (!file.IsValidPath())
             {
                 throw new ArgumentException(InvalidFilePathMessage);
+            }
+
+            var dir = Path.GetDirectoryName(file);
+            if (dir != null && !Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
             }
 
             if (!file.IsValidFile())
