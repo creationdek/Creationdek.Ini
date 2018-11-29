@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Creationdek.Ini</RootNamespace>
+    <AssemblyName>Creationdek.Ini</AssemblyName>
+    <Authors>Creationdek</Authors>
+    <Product>Ini.NET</Product>
+    <Copyright>Copyright © Creationdek 2018</Copyright>
+    <PackageTags>ini, reg, configuration, settings</PackageTags>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <RepositoryType>git</RepositoryType>
+    <Description>Ini.NET is an easy to use library to read/write INI configuration files in .Net.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+</Project>
