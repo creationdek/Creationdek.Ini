@@ -94,6 +94,11 @@ namespace Creationdek.Ini
             return new IniDocumentBuilder(document);
         }
 
+        public static IniDocumentBuilder Builder(string[] headerLines = null, string[] footerLines = null, bool isEnabled = true, params Section[] sections)
+        {
+            return new IniDocumentBuilder(headerLines, footerLines, isEnabled, sections);
+        }
+
         public override string ToString()
         {
             return ToString(Filters.None);

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Creationdek.Ini;
+using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Creationdek.Ini;
 using Xunit;
 
 namespace Creationdek.IniConfig.Net.Tests.Unit
@@ -136,6 +136,32 @@ namespace Creationdek.IniConfig.Net.Tests.Unit
             var doc = GenerateIniObject(GenerateIniDocument(numberOfSections));
             await doc.WriteAsync(file);
             return (File.Exists(file), file);
+        }
+
+        [Fact]
+        public void IniDocumentBuilder_FluentApi_ShouldCreateIniDocument()
+        {
+            var actual = IniDocument
+                .Builder(
+                    new[] { "header line 1", "header line 2" },
+                    new[] { "footer line 1", "footer line 2" },
+                    true,
+                    Section.Builder("person", properties: Property.Builder("name").Build()).Build(),
+                    Section.Builder("animal", properties: Property.Builder("kind").Build()).Build())
+                .Build();
+
+            var expected = new StringBuilder()
+                .AppendLine("header line 1".AsHeader())
+                .AppendLine("header line 2".AsHeader())
+                .AppendLine("person".AsSection())
+                .AppendLine("name=")
+                .AppendLine("animal".AsSection())
+                .AppendLine("kind=")
+                .AppendLine("footer line 1".AsFooter())
+                .AppendLine("footer line 2".AsFooter())
+                .ToString().Trim();
+
+            Assert.Equal(expected, actual.ToString());
         }
 
         [Fact]

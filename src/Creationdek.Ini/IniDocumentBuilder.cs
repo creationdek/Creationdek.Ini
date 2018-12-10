@@ -36,6 +36,18 @@ namespace Creationdek.Ini
             }
         }
 
+        internal IniDocumentBuilder(string[] headerLines = null, string[] footerLines = null, bool isEnabled = true, params Section[] sections)
+        {
+            _header = Comment.Builder(headerLines).AsType(CommentType.Header).Build();
+            _footer = Comment.Builder(footerLines).AsType(CommentType.Footer).Build();
+            _isEnabled = isEnabled;
+
+            for (int i = 0; i < sections.Length; i++)
+            {
+                AppendSection(sections[i]);
+            }
+        }
+
         /// <summary>
         /// Create the resulting <see cref="IniDocument"/>.
         /// </summary>
