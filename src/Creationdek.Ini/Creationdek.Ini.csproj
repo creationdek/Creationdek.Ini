@@ -11,7 +11,7 @@
     <PackageTags>ini, reg, configuration, settings</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <RepositoryType>git</RepositoryType>
-    <Description>Ini.NET is an easy to use library to read/write INI configuration files in .Net.</Description>
+    <Description>Ini.NET is an easy to use api to read/write INI configuration files in .Net.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/creationdek/Creationdek.Ini</RepositoryUrl>
   </PropertyGroup>
