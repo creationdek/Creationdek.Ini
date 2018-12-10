@@ -7,6 +7,23 @@ namespace Creationdek.IniConfig.Net.Tests.Unit
     public class PropertyTests
     {
         [Fact]
+        public void PropertyBuilder_FluentApi_ShouldCreateProperty()
+        {
+            var actual = Property
+                .Builder("key", "value", true, "comment line 1", "comment line 2", "comment line 3")
+                .Build();
+
+            var expected = new StringBuilder()
+                .AppendLine("comment line 1".AsComment())
+                .AppendLine("comment line 2".AsComment())
+                .AppendLine("comment line 3".AsComment())
+                .AppendLine("key=value")
+                .ToString().Trim();
+
+            Assert.Equal(expected, actual.ToString());
+        }
+
+        [Fact]
         public void BuilderBuilder_ShouldCreateAnEmptyProperty()
         {
             var property = Property

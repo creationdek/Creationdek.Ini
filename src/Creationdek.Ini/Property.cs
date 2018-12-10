@@ -46,6 +46,11 @@ namespace Creationdek.Ini
             return new PropertyBuilder(property);
         }
 
+        public static PropertyBuilder Builder(string key, string value = "", bool isEnabled = true, params string[] commentLine)
+        {
+            return new PropertyBuilder(key, value, isEnabled, commentLine);
+        }
+
         /// <summary>
         /// Returns a string representation of the property.
         /// </summary>

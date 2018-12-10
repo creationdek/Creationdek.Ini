@@ -25,6 +25,14 @@ namespace Creationdek.Ini
             }
         }
 
+        internal PropertyBuilder(string key, string value = "", bool isEnabled = true, params string[] commentLine)
+        {
+            WithKey(key);
+            WithValue(value);
+            IsEnable(isEnabled);
+            _comment = Comment.Builder(commentLine).Build();
+        }
+
         /// <summary>
         /// Creates the Property object.
         /// </summary>
