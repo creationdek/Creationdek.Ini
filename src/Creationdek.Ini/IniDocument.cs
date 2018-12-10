@@ -94,6 +94,13 @@ namespace Creationdek.Ini
             return new IniDocumentBuilder(document);
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="IniDocumentBuilder"/> with the given arguments.
+        /// </summary>
+        /// <param name="headerLines">The individual lines for the header.</param>
+        /// <param name="footerLines">The individual lines for the footer.</param>
+        /// <param name="isEnabled">The status of the <see cref="IniDocument"/>. If false will comment out all the sections in the resulting ini file. Useful for manual editing of the file.</param>
+        /// <param name="sections">The individual sctions of the <see cref="IniDocument"/>.</param>
         public static IniDocumentBuilder Builder(string[] headerLines = null, string[] footerLines = null, bool isEnabled = true, params Section[] sections)
         {
             return new IniDocumentBuilder(headerLines, footerLines, isEnabled, sections);

@@ -48,6 +48,13 @@ namespace Creationdek.Ini
             return new SectionBuilder(section);
         }
 
+        /// <summary>
+        /// Creates an instance of <see cref="SectionBuilder"/> with the given arguments.
+        /// </summary>
+        /// <param name="name">The name for the <see cref="Section"/>. Must not be null.</param>
+        /// <param name="commentLines">The lines for the <see cref="Section"/> <see cref="Ini.Comment"/>.</param>
+        /// <param name="isEnabled">The status of the <see cref="Section"/>. If false the whole <see cref="Section"/> will be commented out in the resulting ini file. Useful for manual editing of the ini file.</param>
+        /// <param name="properties">Individual properties that makes up the <see cref="Section"/> properties.</param>
         public static SectionBuilder Builder(string name, string[] commentLines = null, bool isEnabled = true, params Property[] properties)
         {
             return new SectionBuilder(name, commentLines, isEnabled, properties);

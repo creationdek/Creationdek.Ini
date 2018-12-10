@@ -20,22 +20,25 @@ namespace Creationdek.Ini
         }
 
         /// <summary>
-        /// Comment Builder used to create new, clone and or modify a Comment;
+        /// Comment Builder used to create new, clone and or modify a <see cref="Comment"/>;
         /// </summary>
-        /// <param name="comment">The source Comment that you want to clone or modify.</param>
-        /// <returns>Returns a new CommentBuilder for manipulating the Comment.</returns>
+        /// <param name="comment">The source <see cref="Comment"/> to clone or modify.</param>
         public static CommentBuilder Builder(Comment comment = null)
         {
             return new CommentBuilder(comment);
         }
 
+        /// <summary>
+        /// Creates a new <see cref="CommentBuilder"/> with the given lines.;
+        /// </summary>
+        /// <param name="line">The lines for the resulting <see cref="Comment"/> given in order.</param>
         public static CommentBuilder Builder(params string[] line)
         {
             return new CommentBuilder(line);
         }
 
         /// <summary>
-        /// Returns the string as a proper ini Comment.
+        /// Returns the string as a formatted ini <see cref="Comment"/>.
         /// </summary>
         /// <returns></returns>
         public override string ToString()

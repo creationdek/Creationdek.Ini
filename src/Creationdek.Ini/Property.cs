@@ -40,12 +40,18 @@ namespace Creationdek.Ini
         /// Instantiates the PropertyBuilder to start the process of building a Property.
         /// </summary>
         /// <param name="property">The source <see cref="Property"/> to modify (eg. clone or update).</param>
-        /// <returns></returns>
         public static PropertyBuilder Builder(Property property = null)
         {
             return new PropertyBuilder(property);
         }
 
+        /// <summary>
+        /// Creates a new <see cref="PropertyBuilder"/> instance with the all the given agruments for the resulting <see cref="Property"/>.
+        /// </summary>
+        /// <param name="key">The key of the <see cref="Property"/>. Must not be null.</param>
+        /// <param name="value">The value of the <see cref="Property"/>.</param>
+        /// <param name="isEnabled">The status of the <see cref="Property"/>. Useful if you want the user to manually set the <see cref="Property"/> in the resulting ini file, it can be uncommented.</param>
+        /// <param name="commentLine">The individual lines that make up the <see cref="Ini.Comment"/> for this <see cref="Property"/>.</param>
         public static PropertyBuilder Builder(string key, string value = "", bool isEnabled = true, params string[] commentLine)
         {
             return new PropertyBuilder(key, value, isEnabled, commentLine);
