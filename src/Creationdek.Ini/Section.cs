@@ -48,6 +48,11 @@ namespace Creationdek.Ini
             return new SectionBuilder(section);
         }
 
+        public static SectionBuilder Builder(string name, string[] commentLines = null, bool isEnabled = true, params Property[] properties)
+        {
+            return new SectionBuilder(name, commentLines, isEnabled, properties);
+        }
+
         /// <summary>
         /// Returns a collection of properties based on the given status filter (All, Enabled or Disabled properties).
         /// </summary>

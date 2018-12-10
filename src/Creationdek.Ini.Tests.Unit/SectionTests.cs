@@ -1,12 +1,32 @@
-﻿using System;
+﻿using Creationdek.Ini;
+using System;
 using System.Text;
-using Creationdek.Ini;
 using Xunit;
 
 namespace Creationdek.IniConfig.Net.Tests.Unit
 {
     public class SectionTests
     {
+        [Fact]
+        public void SectionBuilder_FluentApi_ShouldCreateSectionWithMultiLineComment()
+        {
+            var actual = Section
+                .Builder("person", new[] { "comment line 1", "comment line 2", "comment line 3" }, true, Property.Builder("name").Build(), Property.Builder("age").Build(), Property.Builder("sex").Build())
+                .Build();
+
+            var expected = new StringBuilder()
+                    .AppendLine("comment line 1".AsComment())
+                    .AppendLine("comment line 2".AsComment())
+                    .AppendLine("comment line 3".AsComment())
+                    .AppendLine("person".AsSection())
+                    .AppendLine("name=")
+                    .AppendLine("age=")
+                    .AppendLine("sex=")
+                    .ToString().Trim();
+
+            Assert.Equal(expected, actual.ToString());
+        }
+
         [Fact]
         public void IsEmpty_GivenEmptySection_ShouldReturnTrueIfNameIsDefault()
         {

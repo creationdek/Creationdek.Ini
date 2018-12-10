@@ -34,6 +34,17 @@ namespace Creationdek.Ini
             }
         }
 
+        internal SectionBuilder(string name, string[] commentLines = null, bool isEnabled = true, params Property[] properties)
+        {
+            WithName(name);
+            _comment = Comment.Builder(commentLines).Build();
+            IsEnable(isEnabled);
+            for (int i = 0; i < properties.Length; i++)
+            {
+                AppendProperty(properties[i]);
+            }
+        }
+
         /// <summary>
         /// Creates the <see cref="Section"/> object.
         /// </summary>
