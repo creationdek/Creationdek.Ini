@@ -29,6 +29,11 @@ namespace Creationdek.Ini
             return new CommentBuilder(comment);
         }
 
+        public static CommentBuilder Builder(params string[] line)
+        {
+            return new CommentBuilder(line);
+        }
+
         /// <summary>
         /// Returns the string as a proper ini Comment.
         /// </summary>

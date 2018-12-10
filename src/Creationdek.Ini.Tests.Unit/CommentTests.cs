@@ -1,11 +1,27 @@
-﻿using System.Text;
-using Creationdek.Ini;
+﻿using Creationdek.Ini;
+using System.Text;
 using Xunit;
 
 namespace Creationdek.IniConfig.Net.Tests.Unit
 {
     public class CommentTests
     {
+        [Fact]
+        public void CommentBuilder_FluentApi_ShouldCreateComment()
+        {
+            var actual = Comment
+                .Builder("Comment line 1", "Comment line 2", "Comment line 3")
+                .Build();
+
+            var expected = new StringBuilder()
+                 .AppendLine("Comment line 1".AsComment())
+                 .AppendLine("Comment line 2".AsComment())
+                 .AppendLine("Comment line 3".AsComment())
+                 .ToString().Trim();
+
+            Assert.Equal(expected, actual.ToString());
+        }
+
         [Fact]
         public void ShouldCreateEmptyComment()
         {

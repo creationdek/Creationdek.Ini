@@ -20,6 +20,17 @@ namespace Creationdek.Ini
             }
         }
 
+        internal CommentBuilder(params string[] line)
+        {
+            if (line != null)
+            {
+                for (int i = 0; i < line.Length; i++)
+                {
+                    AppendLine(line[i]);
+                }
+            }
+        }
+
         /// <summary>
         /// Creates the Comment.
         /// </summary>
